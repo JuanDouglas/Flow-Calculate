@@ -5,17 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 
-namespace p.vasao {
-    /// <summary>
-    ///  Classe Principal
-    /// </summary>
-    class Program {
+namespace FlowCalculate
+{
+
+    public class Program
+    {
         /// <summary>
         /// Metodo principal
         /// </summary>
         /// <param name="args">O que tem no console</param>
-        static void Main(string[] args) {
-            do {
+        public static void Main(string[] args)
+        {
+            do
+            {
                 //Obtem dados
                 Console.Write("Digite a altura: ");
                 double h = double.Parse(Console.ReadLine());
@@ -26,11 +28,11 @@ namespace p.vasao {
                 Console.Write("Digite a inclinação: ");
                 double i = double.Parse(Console.ReadLine());
                 Material material = GetMaterial();
-                Classificacao classificacao = GetClassificacao();
+                Classification classificacao = GetClassification();
 
-            
+
                 //Define parimetro, Raio Hidraulico e area
-                double perimetro = GetPerimetro(b, h, m);
+                double perimetro = GetPerimeter(b, h, m);
                 double area = GetArea(h, m, b);
                 double raioHidraulico = GetRaioHidraulico(area, perimetro);
 
@@ -39,24 +41,25 @@ namespace p.vasao {
                 Console.WriteLine($"Resultado area: {area}m²");
                 Console.WriteLine($"Resultado Raio Hidraulico: {raioHidraulico}");
 
-                Coeficiente coeficiente = new Coeficiente(classificacao, material);
-                Console.WriteLine($"Resultado Vazao: {GetVazao(area, raioHidraulico, i, coeficiente)}m³/s");
+                Coefficient coeficiente = new Coefficient(classificacao, material);
+                Console.WriteLine($"Resultado Vazao: {GetFlowRate(area, raioHidraulico, i, coeficiente)}m³/s");
             } while (true);
-            
+
         }
         /// <summary>
         /// Obtém a classificação pelo usuário.
         /// </summary>
         /// <returns>Retornar a calssficação escolhida.</returns>
-        private static Classificacao GetClassificacao() {
+        private static Classification GetClassification()
+        {
             Console.WriteLine("\t \t Classificações ");
-            Console.WriteLine($"0 - {Classificacao.MuitoBoa.ToString()}");
-            Console.WriteLine($"1 - {Classificacao.Boa.ToString()}");
-            Console.WriteLine($"2 - {Classificacao.Regular.ToString()}");
-            Console.WriteLine($"3 - {Classificacao.Ma.ToString()}");
+            Console.WriteLine($"0 - {Classification.VeryGood.ToString()}");
+            Console.WriteLine($"1 - {Classification.Good.ToString()}");
+            Console.WriteLine($"2 - {Classification.Normal.ToString()}");
+            Console.WriteLine($"3 - {Classification.Bad.ToString()}");
             Console.Write("Digite o número da Clasificação: ");
             int selecionado = int.Parse(Console.ReadLine());
-            return (Classificacao)selecionado;
+            return (Classification)selecionado;
         }
         /// <summary>
         /// Obtém a área.
@@ -65,12 +68,13 @@ namespace p.vasao {
         /// <param name="m">Valor do Talude</param>
         /// <param name="b">Base</param>
         /// <returns></returns>
-        public static double GetArea(double h, double m, double b) {
+        public static double GetArea(double h, double m, double b)
+        {
             // A = H * (B + (M * H))
             double partial1 = m * h;
-            double partial2= b + (partial1);
+            double partial2 = b + (partial1);
             return h * partial2;
-        } 
+        }
         /// <summary>
         /// Obtém o perímetro do canal
         /// </summary>
@@ -78,9 +82,10 @@ namespace p.vasao {
         /// <param name="h">Altura</param>
         /// <param name="m">Valor da Talude</param>
         /// <returns>Retornar o perímetro do canal</returns>
-        public static double GetPerimetro(double b,double h,double m) {
+        public static double GetPerimeter(double b, double h, double m)
+        {
             // P = B + 2 * H(√(1 + m²))
-            double raiz = Math.Sqrt(1 + (m*m));
+            double raiz = Math.Sqrt(1 + (m * m));
             double partial1 = h * raiz;
             double partial2 = (2 * partial1);
             return b + partial2;
@@ -91,7 +96,8 @@ namespace p.vasao {
         /// <param name="a"></param>
         /// <param name="p"></param>
         /// <returns>Re</returns>
-        public static double GetRaioHidraulico(double a,double p) {
+        public static double GetRaioHidraulico(double a, double p)
+        {
             // R = A / P
             return a / p;
         }
@@ -103,22 +109,24 @@ namespace p.vasao {
         /// <param name="i">Declividade do Canal</param>
         /// <param name="co">Coeficiente de Rugosidade</param>
         /// <returns></returns>
-        public static double GetVazao(double a,double r,double i,Coeficiente co) {
+        public static double GetFlowRate(double a, double r, double i, Coefficient co)
+        {
             // Q = A *( 1 / N) * R^2/3 * I^1/2
             double partial1_1 = (double)2 / (double)3;
-            double partial1 = Math.Pow(r,partial1_1);
+            double partial1 = Math.Pow(r, partial1_1);
             double partial2_1 = (double)1 / (double)2;
-            double partial2 = Math.Pow(i,partial2_1);
-            double partial3 = (double)1 / co.ValorDoCoeficiente;
+            double partial2 = Math.Pow(i, partial2_1);
+            double partial3 = (double)1 / co.Value;
             double partial4 = partial1 * partial2;
             double partial5 = a * partial3;
-            return partial4 * partial5 ;
+            return partial4 * partial5;
         }
         /// <summary>
         /// Obtém o material
         /// </summary>
         /// <returns>Retorna o Material escolhido.</returns>
-        public static Material GetMaterial() {
+        public static Material GetMaterial()
+        {
             Console.WriteLine("\t \t Materiais ");
             Console.WriteLine($"0 - {Material.Rocha.ToString()}");
             Console.WriteLine($"1 - {Material.Fundo_em_terra_e_talude_com_pedra.ToString()}");
@@ -129,7 +137,6 @@ namespace p.vasao {
             Console.Write("Digite o número da Material: ");
             int selecionado = int.Parse(Console.ReadLine());
             return (Material)selecionado;
-
         }
-       }
+    }
 }

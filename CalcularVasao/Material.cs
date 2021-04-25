@@ -1,4 +1,4 @@
-﻿namespace p.vasao {
+﻿namespace FlowCalculate {
     public enum Material : int {
         Rocha = 0,
         Fundo_em_terra_e_talude_com_pedra = 1,
