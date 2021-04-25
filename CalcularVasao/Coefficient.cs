@@ -1,8 +1,10 @@
-﻿namespace FlowCalculate {
+﻿namespace FlowCalculate
+{
     /// <summary>
     /// Classe responsável por obter o coeficiente.
     /// </summary>
-    public class Coefficient {
+    public class Coefficient
+    {
         public double Value { get => GetCoenficiente(); }
         /// <summary>
         /// Classificação Do Canal
@@ -13,7 +15,8 @@
         /// </summary>
         public Material Material { get; private set; }
 
-        public Coefficient(Classification classificacao, Material material) {
+        public Coefficient(Classification classificacao, Material material)
+        {
             Classificacao = classificacao;
             Material = material;
         }
@@ -21,10 +24,13 @@
         /// Obtém o Coeficiente pelos valores
         /// </summary>
         /// <returns>Obtém a constante do coefiente definido.</returns>
-        private double GetCoenficiente() {
-            switch (Material) {
+        private double GetCoenficiente()
+        {
+            switch (Material)
+            {
                 case Material.Rocha:
-                    switch (Classificacao) {
+                    switch (Classificacao)
+                    {
                         case Classification.VeryGood:
                             return 0.035;
                         case Classification.Good:
@@ -37,7 +43,8 @@
                             return 0;
                     }
                 case Material.Fundo_em_terra_e_talude_com_pedra:
-                    switch (Classificacao) {
+                    switch (Classificacao)
+                    {
                         case Classification.VeryGood:
                             return 0.028;
                         case Classification.Good:
@@ -50,7 +57,8 @@
                             return 0;
                     }
                 case Material.Leito_pedregoso_e_talude_vegetado:
-                    switch (Classificacao) {
+                    switch (Classificacao)
+                    {
                         case Classification.VeryGood:
                             return 0.025;
                         case Classification.Good:
@@ -63,11 +71,12 @@
                             return 0;
                     }
                 case Material.Revestimento_de_concreto:
-                    switch (Classificacao) {
+                    switch (Classificacao)
+                    {
                         case Classification.VeryGood:
                             return 0.012;
                         case Classification.Good:
-                          return 0.014;
+                            return 0.014;
                         case Classification.Normal:
                             return 0.016;
                         case Classification.Bad:
@@ -76,7 +85,8 @@
                             return 0;
                     }
                 case Material.Terra_retilineo_ou_uniforme:
-                    switch (Classificacao) {
+                    switch (Classificacao)
+                    {
                         case Classification.VeryGood:
                             return 0.017;
                         case Classification.Good:
@@ -89,7 +99,8 @@
                             return 0;
                     }
                 case Material.Canais_dragados:
-                    switch (Classificacao) {
+                    switch (Classificacao)
+                    {
                         case Classification.VeryGood:
                             return 0.025;
                         case Classification.Good:

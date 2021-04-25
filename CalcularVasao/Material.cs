@@ -1,5 +1,7 @@
-﻿namespace FlowCalculate {
-    public enum Material : int {
+﻿namespace FlowCalculate
+{
+    public enum Material : int
+    {
         Rocha = 0,
         Fundo_em_terra_e_talude_com_pedra = 1,
         Leito_pedregoso_e_talude_vegetado = 2,

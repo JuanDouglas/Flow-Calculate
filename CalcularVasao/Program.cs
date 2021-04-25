@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Globalization;
 
 namespace FlowCalculate
 {
@@ -128,12 +123,12 @@ namespace FlowCalculate
         public static Material GetMaterial()
         {
             Console.WriteLine("\t \t Materiais ");
-            Console.WriteLine($"0 - {Material.Rocha.ToString()}");
-            Console.WriteLine($"1 - {Material.Fundo_em_terra_e_talude_com_pedra.ToString()}");
-            Console.WriteLine($"2 - {Material.Leito_pedregoso_e_talude_vegetado.ToString()}");
-            Console.WriteLine($"3 - {Material.Revestimento_de_concreto.ToString()}");
-            Console.WriteLine($"4 - {Material.Terra_retilineo_ou_uniforme.ToString()}");
-            Console.WriteLine($"5 - {Material.Canais_dragados.ToString()}");
+            Console.WriteLine($"0 - {Material.Rocha}");
+            Console.WriteLine($"1 - {Material.Fundo_em_terra_e_talude_com_pedra}");
+            Console.WriteLine($"2 - {Material.Leito_pedregoso_e_talude_vegetado}");
+            Console.WriteLine($"3 - {Material.Revestimento_de_concreto}");
+            Console.WriteLine($"4 - {Material.Terra_retilineo_ou_uniforme}");
+            Console.WriteLine($"5 - {Material.Canais_dragados}");
             Console.Write("Digite o número da Material: ");
             int selecionado = int.Parse(Console.ReadLine());
             return (Material)selecionado;
