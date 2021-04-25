@@ -2,7 +2,7 @@
 {
     public enum Classification : int
     {
-        // Very good state
+        //Very good state
         VeryGood = 0,
         //Good state
         Good = 1,
